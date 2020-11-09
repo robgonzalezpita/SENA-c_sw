@@ -38,12 +38,12 @@ This repository is organized as follows.
 Contains the reference input and output data all implementations must use
 for testing and validation.
 
-### 'ref/'
+### `ref/`
 
 Contains the source tree for the reference implementation. See the README
 in that directory for details about how to run and test it.
 
-### 'foo/'
+### `foo/`
 
 Alternative implementations will be stored in a new top-level subdirectory
 along side the reference implementation. In this documentation, `foo/` is
