@@ -617,7 +617,7 @@ contains
 
 
   !------------------------------------------------------------------
-  ! divergence_corner
+  ! d2a2c_vect
   !
   ! There is a limit to how far this routine can fill uc and vc in the
   ! halo, and so either mpp_update_domains or some sort of boundary
