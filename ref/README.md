@@ -1,26 +1,47 @@
 This is the reference implementation of the `c_sw` kernel extracted from the FV3 model.
 It is an excellent kernel for OpenMP analysis. The number of threads is determined by
-the OMP_NUM_THREADS environment variable, which defaults to the number of hyperthreads
+the `OMP_NUM_THREADS` environment variable, which defaults to the number of hyperthreads
 on the machine if it is not set.  Currently the number of threads is hard-coded to 4 in
-the build script when running "ctest", but users can customize it at runtime for other
+the build script when running `ctest`, but users can customize it at runtime for other
 runs.
 
-## Building the kernel
+# Building the kernel
 
 This kernel uses an out-of-source cmake build, meaning that the build must be done in 
 directory that is not in the source tree.
 
-The build procedure is (from the directory containing this file):
+## Dependencies 
+* C Compiler
+* Fortran Compiler
+* NetCDF 
+* cmake 
+* git-lfs 
+
+## Basic build procedure (from the directory containing this file)
 
 ```
 rm -rf build ; mkdir build ; cd build
-module load <compiler> netcdf cmake
-export CC=<gcc | icc>
-export FC=<gfortran | ifort>
+export CC=<name of C compiler>
+export FC=<name of fortran compiler> 
 cmake -DCMAKE_BUILD_TYPE=<debug | release> ..
 make VERBOSE=1
 ```
 
+### Machines that use modules to manage software
+
+You may need to load modules for your compiler, NetCDF, and/or cmake before following the steps above. For example:  
+
+ `module load intel netcdf cmake`
+
+### Machines that do not use modules to manage software
+
+If NetCDF is not installed in a standard location where cmake can find it, you may need to add the paths where your NetCDF and NetCDF-Fortran are installed to the `CMAKE_PREFIX_PATH variable`. For example:
+
+`export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/path/to/netcdf:/path/to/netcdf-fortran`
+
+### Building on a Mac
+
+By default, gcc points to the clang compiler on Mac. The clang compiler is not yet supported. To use the GNU compiler on Mac, depending on how the GNU compiler was installed, you may need to specify the c compiler name as gcc-$version. For example: `gcc-10`
 ## Testing the kernel
 
 To run the test suite (from the build directory):
