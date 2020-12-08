@@ -1,3 +1,5 @@
+![CI for c_sw](https://github.com/NOAA-GSL/SENA-c_sw/workflows/CI%20for%20c_sw/badge.svg?branch=develop)
+
 ```
 This repository is a scientific product and is not official communication
 of the National Oceanic and Atmospheric Administration, or the United States
