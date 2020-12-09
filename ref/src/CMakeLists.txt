@@ -2,8 +2,6 @@ list( APPEND c_sw_src_files
 netCDFModule.f90
 print_affinity.c
 runnable.c
-isEqual.f90
-EqualTest.F90
 sw_core.F90
 sw_driver.f90
 )

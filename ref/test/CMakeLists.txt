@@ -21,6 +21,13 @@ list( APPEND c_sw_test_output
   test_output/c_sw_48x48.test
 )
 
+list( APPEND equality_test_src_files
+  utilityfunctions/isEqual.f90
+  utilityfunctions/EqualTest.F90
+)
+
+add_executable( EqualTest ${equality_test_src_files} )
+
 # Create data directory for kernel input and symlink all files
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/inputs)
@@ -75,3 +82,6 @@ add_test(NAME regression_48x48
 add_test(NAME compare_48x48
          COMMAND ${COMPARE_SH} test_output/c_sw_48x48.log.out test_output/c_sw_48x48.test)
 
+# IsEqual Tests
+add_test(NAME IsEqualTest 
+         COMMAND echo "Hello IsEqualTests!")
