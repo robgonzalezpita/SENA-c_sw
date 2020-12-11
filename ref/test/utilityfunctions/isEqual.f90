@@ -34,17 +34,24 @@ module isequalmodule
   !       asserttrue 
   !
   !       Helper function to improve readability in evalutaing 
-  !       isequal's expected behavior
+  !       isequal's expected behavior. The first argument is 
+  !       the condition to be evaluated, and the second argument
+  !       captures a failing assertion, increasing a global counter
+  !       variable in the test program.  
   !-----------------------------------------------------------
 
-  logical function asserttrue(cond1) 
+  logical function asserttrue(cond1, counter) 
     implicit none
 
     logical, intent(in) :: cond1
+    integer, intent(inout) :: counter
 
     asserttrue = cond1 .eqv. .true.
 
-    ! insert an if statement w a stop 1 is assertion fails
+    ! increment the counter if the assertion is erroneous 
+    if( .not. asserttrue ) then 
+      counter = counter + 1
+    endif 
 
   end function asserttrue
 
@@ -52,17 +59,24 @@ module isequalmodule
   !       assertfalse 
   !
   !       Helper function to improve readability in evalutaing 
-  !       isequal's expected behavior
+  !       isequal's expected behavior. The first argument is 
+  !       the condition to be evaluated, and the second argument
+  !       captures a failing assertion, increasing a global counter
+  !       variable in the test program. 
   !-----------------------------------------------------------
 
-  logical function assertfalse(cond1) 
+  logical function assertfalse(cond1, counter) 
     implicit none
 
     logical, intent(in) :: cond1
+    integer, intent(inout) :: counter
 
     assertfalse = cond1 .eqv. .false.
-
-    ! insert an if statement w a stop 1 is assertion fails
+    
+    ! increment the counter if the assertion is erroneous 
+    if( .not. assertfalse ) then 
+      counter = counter + 1
+    endif 
 
   end function assertfalse
 
