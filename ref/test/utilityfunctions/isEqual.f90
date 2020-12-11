@@ -1,44 +1,69 @@
-Module IsEqualModule
+module isequalmodule
+  
+ contains 
 
-CONTAINS 
+  !------------------------------------------------------------
+  !       isequal 
+  !
+  !       Function which compares equality of two real*8 floats
+  !       within a given tolerance value.
+  !------------------------------------------------------------
 
-LOGICAL FUNCTION IsEqual(a, b, tolerance)
-IMPLICIT NONE
+  logical function isequal(a, b, tolerance)
+    implicit none
 
-        real*8, intent(in)   :: a, b, tolerance
-        real*8               :: absA, absB, diff
+    real*8, intent(in)   :: a, b, tolerance
+    real*8               :: absA, absB, diff
 
-absA = abs(a)
-absB = abs(b)
-diff = abs(a - b)
+    absA = abs(a)
+    absB = abs(b)
+    diff = abs(a - b)
 
-IF (a == b) THEN
-        IsEqual = .TRUE.
-ELSE IF ( a == 0 .OR. b == 0 .OR. (absA + absB < TINY(a))) THEN
-         ! a or b is zero or both are extremely close to it, relative error is less meaningful
-         IsEqual = diff < (tolerance * TINY(a))
-ELSE            ! use relative error
-        IsEqual = (diff / MIN((absA + absB), HUGE(a))) < tolerance
-ENDIF
+    if (a == b) then
+        isequal = .true.
+    else if ( a == 0 .or. b == 0 .or. (absA + absB < TINY(a))) then
+        ! a or b is zero or both are extremely close to it, relative error is less meaningful
+        isequal = diff < (tolerance * TINY(a))
+    else    ! use relative error
+        isequal = (diff / MIN((absA + absB), HUGE(a))) < tolerance
+    endif
 
-END FUNCTION IsEqual
+  end function isequal
 
-LOGICAL FUNCTION AssertTrue(cond1) 
-IMPLICIT NONE
+  !-----------------------------------------------------------
+  !       asserttrue 
+  !
+  !       Helper function to improve readability in evalutaing 
+  !       isequal's expected behavior
+  !-----------------------------------------------------------
 
-        logical, intent(in) :: cond1
+  logical function asserttrue(cond1) 
+    implicit none
 
-AssertTrue = cond1 .EQV. .TRUE.
+    logical, intent(in) :: cond1
 
-END FUNCTION AssertTrue
+    asserttrue = cond1 .eqv. .true.
 
-LOGICAL FUNCTION AssertFalse(cond1) 
-IMPLICIT NONE
+    ! insert an if statement w a stop 1 is assertion fails
 
-        logical, intent(in) :: cond1
+  end function asserttrue
 
-AssertFalse = cond1 .EQV. .FALSE.
+  !-----------------------------------------------------------
+  !       assertfalse 
+  !
+  !       Helper function to improve readability in evalutaing 
+  !       isequal's expected behavior
+  !-----------------------------------------------------------
 
-END FUNCTION AssertFalse
+  logical function assertfalse(cond1) 
+    implicit none
 
-END Module  IsEqualModule
+    logical, intent(in) :: cond1
+
+    assertfalse = cond1 .eqv. .false.
+
+    ! insert an if statement w a stop 1 is assertion fails
+
+  end function assertfalse
+
+end module  isequalmodule
