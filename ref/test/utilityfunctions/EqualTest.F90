@@ -2,8 +2,8 @@
 !	This program provides testing coverage for the isequal function  
 !			 
 !	Uses: FUNCTION isequal(a, b, tolerance) 
-!   	  FUNCTION asserttrue(cond1)
-!	      FUNCTION assertfalse(cond1) 	
+!   	  FUNCTION asserttrue(cond1, counter)
+!	      FUNCTION assertfalse(cond1, counter) 	
 !	      	
 !	Test cases are written using two assert functions to determine whether
 !	the isequal function is correctly evaluating to the expected Boolean 
@@ -25,7 +25,7 @@ program equaltest
   real*8  :: tol
   integer :: failureCounter
   
-  ! Set the tolerance value, and counter for failed assertion tests
+  ! Set the tolerance value for the isequal function and set failureCounter to zero. 
   tol = .000001D0
   failureCounter = 0
 
