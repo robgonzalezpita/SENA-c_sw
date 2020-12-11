@@ -1,9 +1,9 @@
 !------------------------------------------------------------------
-!	This program provides testing coverage for the isequal function  
+!	    This program provides testing coverage for the isequal function  
 !			 
-!	Uses: FUNCTION isequal(a, b, tolerance) 
-!   	  FUNCTION asserttrue(cond1, counter)
-!	      FUNCTION assertfalse(cond1, counter) 	
+!	    Uses: FUNCTION isequal(a, b, tolerance) 
+!   	      FUNCTION asserttrue(cond1, counter)
+!	          FUNCTION assertfalse(cond1, counter) 	
 !	      	
 !     Test cases are written using two assert functions to determine whether
 !     the isequal function is correctly evaluating to the expected Boolean 
@@ -13,8 +13,8 @@
 !     and the ability to provide an exit code if any tests do fail.
 !     For testing purposes, the tolerance value will be set at .000001 (.000001D0).
 !
-! Note- When tolerance value is increased, or is greater than the floats
-! being compared, isequal() does not behave as expected.
+!     Note- When tolerance value is increased, or is greater than the floats
+!     being compared, isequal() does not behave as expected.
 !------------------------------------------------------------------
 program equaltest
 
