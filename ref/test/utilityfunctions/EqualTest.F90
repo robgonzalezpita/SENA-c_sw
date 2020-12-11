@@ -5,13 +5,13 @@
 !   	  FUNCTION asserttrue(cond1, counter)
 !	      FUNCTION assertfalse(cond1, counter) 	
 !	      	
-! Test cases are written using two assert functions to determine whether
-! the isequal function is correctly evaluating to the expected Boolean 
-! for two floating point values. The assert functions are purely for code 
-! readability, and written to	avoid importing external libraries. The second 
-! argument to the assertion functions is to keep track of failing test cases
-! and the ability to provide an exit code if any tests do fail.
-! For testing purposes, the tolerance value will be set at .000001 (.000001D0).
+!     Test cases are written using two assert functions to determine whether
+!     the isequal function is correctly evaluating to the expected Boolean 
+!     for two floating point values. The assert functions are purely for code 
+!     readability, and written to	avoid importing external libraries. The second 
+!     argument to the assertion functions is to keep track of failing test cases
+!     and the ability to provide an exit code if any tests do fail.
+!     For testing purposes, the tolerance value will be set at .000001 (.000001D0).
 !
 ! Note- When tolerance value is increased, or is greater than the floats
 ! being compared, isequal() does not behave as expected.
