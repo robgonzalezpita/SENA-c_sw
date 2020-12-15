@@ -30,7 +30,7 @@ module isequalmodule
 
   end function isequal
 
-  !-----------------------------------------------------------
+  !-----------------------------------------------------------------
   !       asserttrue 
   !
   !       Helper function to improve readability in evalutaing 
@@ -38,7 +38,7 @@ module isequalmodule
   !       the condition to be evaluated, and the second argument
   !       captures a failing assertion, increasing a global counter
   !       variable in the test program.  
-  !-----------------------------------------------------------
+  !-----------------------------------------------------------------
 
   logical function asserttrue(cond1, counter) 
     implicit none
@@ -55,7 +55,7 @@ module isequalmodule
 
   end function asserttrue
 
-  !-----------------------------------------------------------
+  !-----------------------------------------------------------------
   !       assertfalse 
   !
   !       Helper function to improve readability in evalutaing 
@@ -63,7 +63,7 @@ module isequalmodule
   !       the condition to be evaluated, and the second argument
   !       captures a failing assertion, increasing a global counter
   !       variable in the test program. 
-  !-----------------------------------------------------------
+  !-----------------------------------------------------------------
 
   logical function assertfalse(cond1, counter) 
     implicit none

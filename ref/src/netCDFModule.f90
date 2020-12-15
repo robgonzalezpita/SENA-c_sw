@@ -298,7 +298,7 @@ contains
   !------------------------------------------------------------------
   ! write_global_character
   !
-  ! Reads a global character
+  ! Writes a global character
   !------------------------------------------------------------------
   subroutine write_global_character(ncFileID, globalName, data)
 
@@ -315,7 +315,7 @@ contains
   !------------------------------------------------------------------
   ! write_global_logical
   !
-  ! Reads a global logical
+  ! Writes a global logical
   !------------------------------------------------------------------
   subroutine write_global_logical(ncFileID, globalName, data)
 
@@ -336,7 +336,7 @@ contains
   !------------------------------------------------------------------
   ! write_global_int
   !
-  ! Reads a global integer
+  ! Writes a global integer
   !------------------------------------------------------------------
   subroutine write_global_int(ncFileID, globalName, data)
 
@@ -353,7 +353,7 @@ contains
   !------------------------------------------------------------------
   ! write_global_real
   !
-  ! Reads a global real
+  ! Writes a global real
   !------------------------------------------------------------------
   subroutine write_global_real(ncFileID, globalName, data)
 
