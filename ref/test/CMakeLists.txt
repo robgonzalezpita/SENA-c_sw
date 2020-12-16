@@ -84,6 +84,6 @@ add_test(NAME compare_48x48
 
 # IsEqual Tests
 add_test(NAME IsEqualTest 
-         COMMAND bash -c "./EqualTest")
+         COMMAND EqualTest)
          
          
