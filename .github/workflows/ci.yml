@@ -5,6 +5,7 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 # This workflow contains multiple jobs for different operating systems
@@ -26,21 +27,13 @@ jobs:
       - name: Install Homebrew 
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       
-      # Install GCC 
-      - name: Install GCC
-        run: brew install gcc
-        
-      # Install gfortran
-      - name: Install gfortran
-        run: brew install --cask gfortran
+      # Unlink gcc
+      - name: Unlink gcc
+        run: brew unlink gcc@8 && brew unlink gcc@9
         
       # Install netCDF
       - name: Install netCDF 
-        run: brew install netcdf 
-            
-      # Install CMake
-      - name: Install CMake
-        run: brew install cmake
+        run: HOMEBREW_NO_AUTO_UPDATE=1 brew install netcdf 
       
       # Get NetCDF versions
       - name: Get NetCDF version
@@ -56,7 +49,7 @@ jobs:
           mkdir build
           cd build
           export CC=gcc-10
-          export FC=gfortran          
+          export FC=gfortran-10          
           cmake -DCMAKE_BUILD_TYPE=debug ..
           make
           ctest
@@ -69,7 +62,7 @@ jobs:
           mkdir build
           cd build
           export CC=gcc-10
-          export FC=gfortran          
+          export FC=gfortran-10           
           cmake -DCMAKE_BUILD_TYPE=release ..
           make
           ctest       
