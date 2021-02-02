@@ -60,8 +60,10 @@ program sw_driver
   call system_clock(count_start, count_rate)
 
   ! Run the kernel
-  !$OMP parallel do schedule(runtime)
-  do k=1,npz
+  ! $OMP parallel do schedule(runtime)
+
+
+  ! do k=1,npz 
      call c_sw(sw_corner, se_corner, nw_corner, ne_corner,           &
                rarea, rarea_c, sin_sg, cos_sg, sina_v, cosa_v,       &
                sina_u, cosa_u, fC, rdxc, rdyc, dx, dy, dxc, dyc,     &
@@ -71,7 +73,8 @@ program sw_driver
                w(isd,jsd,k), uc(isd,jsd,k), vc(isd,jsd,k),           &
                ua(isd,jsd,k), va(isd,jsd,k), wc(isd,jsd,k),          &
                ut(isd,jsd,k), vt(isd,jsd,k), divg_d(isd,jsd,k), dt2)
-  enddo
+  ! enddo
+
 
   ! Get the stop time
   call system_clock(count_end, count_rate)

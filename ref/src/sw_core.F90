@@ -126,6 +126,8 @@ contains
     iep1 = ie + 1
     jep1 = je + 1
 
+    print*, size(rarea)
+
     call d2a2c_vect(sw_corner, se_corner, ne_corner, nw_corner,            &
                     sin_sg, cosa_u, cosa_v, cosa_s, rsin_u, rsin_v, rsin2, &
                     dxa, dya, u, v, ua, va, uc, vc, ut, vt)
@@ -481,6 +483,7 @@ contains
       enddo
     enddo
 
+    print*, size(rarea)
 !    ret = gptlstop('c_sw')
   end subroutine c_sw
 
@@ -512,6 +515,7 @@ contains
 !    integer :: ret
 
     ! ret = gptlstart('divergence_corner')
+    
 
     if (nested) then
       is2 = is
@@ -1483,7 +1487,7 @@ contains
 
     ! Note: Assumed shape array sections always start with index=1 for all dimensions
     !       So we don't have to know start/end indices here
-    write(*,'(A5,A15,5E20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
+    write(*,'(A5,A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
                             data(size(data,1), size(data,2), size(data,3)), &
                             sqrt(sum(data**2) / size(data))
 
@@ -1502,7 +1506,7 @@ contains
 
     ! Note: Assumed shape array sections always start with index=1 for all dimensions
     !       So we don't have to know start/end indices here
-    write(*,'(A5, A15,5E20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
+    write(*,'(A5, A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
                             data(size(data,1), size(data,2)),            &
                             sqrt(sum(data**2) / size(data))
 
