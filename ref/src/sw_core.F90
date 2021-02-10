@@ -22,8 +22,13 @@
 module sw_core_mod
  
   use netCDFModule
+#ifdef ENABLE_GPTL
+  use gptl
+#endif
 
   implicit none
+
+  integer :: do_profile = 0  ! Flag for enabling profiling at runtime
 
   real, parameter:: big_number = 1.E8
 
@@ -115,7 +120,13 @@ contains
     real                                  :: dt4
     integer                               :: i, j
     integer                               :: iep1, jep1
-!    integer                               :: ret
+    integer                               :: ret
+
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+    ret = gptlstart('c_sw')
+  end if
+#endif
 
     iep1 = ie + 1
     jep1 = je + 1
@@ -132,7 +143,6 @@ contains
                              dxc, dyc, u, v, ua, va, divg_d)
     endif
 
-    ! ret = gptlstart('c_sw')
     do j = js-1, jep1
       do i = is-1, iep1+1
         if (ut(i, j) > 0.) then
@@ -359,8 +369,17 @@ contains
       enddo
     enddo
 
+<<<<<<< HEAD
     print*, size(rarea)
 !    ret = gptlstop('c_sw')
+=======
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+    ret = gptlstop('c_sw')
+  end if
+#endif
+
+>>>>>>> a36021af833be02614655b201ed712304016a906
   end subroutine c_sw
 
 
@@ -386,10 +405,18 @@ contains
     real    :: vf(is-1:ie+2, js-2:je+2)
     integer :: i, j
     integer :: is2, ie1
-!    integer :: ret
+    integer :: ret
 
+<<<<<<< HEAD
     ! ret = gptlstart('divergence_corner')
     
+=======
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+    ret = gptlstart('divergence_corner')
+  end if
+#endif
+>>>>>>> a36021af833be02614655b201ed712304016a906
 
     is2 = max(2, is)
     ie1 = min(npx-1, ie+1)
@@ -447,7 +474,11 @@ contains
       enddo
     enddo
 
-    ! ret = gptlstop('divergence_corner')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+     ret = gptlstop('divergence_corner')
+  end if
+#endif
 
   end subroutine divergence_corner
 
@@ -480,9 +511,13 @@ contains
     ! Local
     real, dimension(isd:ied, jsd:jed) :: utmp, vtmp
     integer :: i, j, ifirst, ilast
-    ! integer :: ret
+    integer :: ret
 
-    ! ret = gptlstart ('d2a2c_vect')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+     ret = gptlstart ('d2a2c_vect')
+  end if
+#endif
 
     ! Initialize the non-existing corner regions
     utmp = big_number
@@ -719,7 +754,11 @@ contains
       endif
     enddo
 
-    ! ret = gptlstop ('d2a2c_vect')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+     ret = gptlstop ('d2a2c_vect')
+  end if
+#endif
 
   end subroutine d2a2c_vect
 
@@ -759,9 +798,13 @@ contains
     real,    intent(inout) :: q2(isd:ied, jsd:jed)
     logical, intent(   in) :: sw_corner, se_corner, ne_corner, nw_corner
 
-    ! integer :: ret
+     integer :: ret
 
-    ! ret = gptlstart('fill2_4corners')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+    ret = gptlstart('fill2_4corners')
+  end if
+#endif
 
     select case(dir)
       case(1)
@@ -818,7 +861,11 @@ contains
 
     end select
 
-    ! ret = gptlstop('fill2_4corners')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+     ret = gptlstop('fill2_4corners')
+  end if
+#endif
 
   end subroutine fill2_4corners
 
@@ -834,9 +881,13 @@ contains
     real,    intent(inout) :: q(isd:ied, jsd:jed)
     logical, intent(   in) :: sw_corner, se_corner, ne_corner, nw_corner
 
-    ! integer :: ret
+    integer :: ret
  
-    ! ret = gptlstart('fill_4corners')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+     ret = gptlstart('fill_4corners')
+  end if
+#endif
 
     select case(dir)
       case(1)
@@ -877,7 +928,11 @@ contains
 
     end select
 
-    ! ret = gptlstop('fill_4corners')
+#ifdef ENABLE_GPTL
+  if (do_profile == 1) then
+    ret = gptlstop('fill_4corners')
+  end if
+#endif
 
   end subroutine fill_4corners
 
