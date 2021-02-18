@@ -369,17 +369,12 @@ contains
       enddo
     enddo
 
-<<<<<<< HEAD
-    print*, size(rarea)
-!    ret = gptlstop('c_sw')
-=======
 #ifdef ENABLE_GPTL
   if (do_profile == 1) then
     ret = gptlstop('c_sw')
   end if
 #endif
 
->>>>>>> a36021af833be02614655b201ed712304016a906
   end subroutine c_sw
 
 
@@ -407,16 +402,11 @@ contains
     integer :: is2, ie1
     integer :: ret
 
-<<<<<<< HEAD
-    ! ret = gptlstart('divergence_corner')
-    
-=======
 #ifdef ENABLE_GPTL
   if (do_profile == 1) then
     ret = gptlstart('divergence_corner')
   end if
 #endif
->>>>>>> a36021af833be02614655b201ed712304016a906
 
     is2 = max(2, is)
     ie1 = min(npx-1, ie+1)
@@ -1218,9 +1208,13 @@ contains
 
     ! Note: Assumed shape array sections always start with index=1 for all dimensions
     !       So we don't have to know start/end indices here
-    write(*,'(A5,A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
-                            data(size(data,1), size(data,2), size(data,3)), &
-                            sqrt(sum(data**2) / size(data))
+    write(*,'(A5,A15,5E20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
+    data(size(data,1), size(data,2), size(data,3)), &
+    sqrt(sum(data**2) / size(data))
+
+    ! write(*,'(A5,A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
+    !                         data(size(data,1), size(data,2), size(data,3)), &
+    !                         sqrt(sum(data**2) / size(data))
 
   end subroutine print_3d_variable
 
@@ -1237,9 +1231,13 @@ contains
 
     ! Note: Assumed shape array sections always start with index=1 for all dimensions
     !       So we don't have to know start/end indices here
-    write(*,'(A5, A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
-                            data(size(data,1), size(data,2)),            &
-                            sqrt(sum(data**2) / size(data))
+    write(*,'(A5, A15,5E20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
+    data(size(data,1), size(data,2)),            &
+    sqrt(sum(data**2) / size(data))
+
+    ! write(*,'(A5, A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
+    !                         data(size(data,1), size(data,2)),            &
+    !                         sqrt(sum(data**2) / size(data))
 
   end subroutine print_2d_variable
 

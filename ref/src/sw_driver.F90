@@ -82,18 +82,19 @@ program sw_driver
   ! Run the kernel
   ! $OMP parallel do schedule(runtime)
 
+ ! The first two dimensions of inout or out variables can be passed to csw as assumed shape
 
-  ! do k=1,npz 
+  do k=1,npz 
      call c_sw(sw_corner, se_corner, nw_corner, ne_corner,           &
                rarea, rarea_c, sin_sg, cos_sg, sina_v, cosa_v,       &
                sina_u, cosa_u, fC, rdxc, rdyc, dx, dy, dxc, dyc,     &
                cosa_s, rsin_u, rsin_v, rsin2, dxa, dya,              &
-               delpc(isd,jsd,k), delp(isd,jsd,k), ptc(isd,jsd,k),    &
-               pt(isd,jsd,k), u(isd,jsd,k), v(isd,jsd,k),            &
-               w(isd,jsd,k), uc(isd,jsd,k), vc(isd,jsd,k),           &
-               ua(isd,jsd,k), va(isd,jsd,k), wc(isd,jsd,k),          &
-               ut(isd,jsd,k), vt(isd,jsd,k), divg_d(isd,jsd,k), dt2)
-  ! enddo
+               delpc(:,:,k), delp(:,:,k), ptc(:,:,k),    &
+               pt(:,:,k), u(:,:,k), v(:,:,k),            &
+               w(:,:,k), uc(:,:,k), vc(:,:,k),           &
+               ua(:,:,k), va(:,:,k), wc(:,:,k),          &
+               ut(:,:,k), vt(:,:,k), divg_d(:,:,k), dt2)
+  enddo
 
 
 #ifdef ENABLE_GPTL
