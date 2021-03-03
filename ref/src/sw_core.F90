@@ -1208,6 +1208,7 @@ contains
 
     ! Note: Assumed shape array sections always start with index=1 for all dimensions
     !       So we don't have to know start/end indices here
+<<<<<<< HEAD
     write(*,'(A5,A15,5E20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
     data(size(data,1), size(data,2), size(data,3)), &
     sqrt(sum(data**2) / size(data))
@@ -1215,6 +1216,11 @@ contains
     ! write(*,'(A5,A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
     !                         data(size(data,1), size(data,2), size(data,3)), &
     !                         sqrt(sum(data**2) / size(data))
+=======
+    write(*,'(A5,A15,5ES20.10)') "TEST ", name, minval(data), maxval(data), data(1,1,1),  &
+                            data(size(data,1), size(data,2), size(data,3)), &
+                            sqrt(sum(data**2) / size(data))
+>>>>>>> 06531271d72336ebb7172fa1ccdc028f993eab41
 
   end subroutine print_3d_variable
 
@@ -1231,6 +1237,7 @@ contains
 
     ! Note: Assumed shape array sections always start with index=1 for all dimensions
     !       So we don't have to know start/end indices here
+<<<<<<< HEAD
     write(*,'(A5, A15,5E20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
     data(size(data,1), size(data,2)),            &
     sqrt(sum(data**2) / size(data))
@@ -1238,6 +1245,11 @@ contains
     ! write(*,'(A5, A15,5ES20.11)') "TEST ", name, minval(data), maxval(data), data(1,1), &
     !                         data(size(data,1), size(data,2)),            &
     !                         sqrt(sum(data**2) / size(data))
+=======
+    write(*,'(A5, A15,5ES20.10)') "TEST ", name, minval(data), maxval(data), data(1,1), &
+                            data(size(data,1), size(data,2)),            &
+                            sqrt(sum(data**2) / size(data))
+>>>>>>> 06531271d72336ebb7172fa1ccdc028f993eab41
 
   end subroutine print_2d_variable
 
